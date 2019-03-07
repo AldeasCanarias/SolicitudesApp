@@ -8,7 +8,7 @@ class  Media {
   public $fileTempPath;
   //Set destination for upload
   public $userPath = SITE_ROOT.DS.'..'.DS.'uploads/users';
-  public $productPath = SITE_ROOT.DS.'..'.DS.'uploads/products';
+  public $bocetoPath = SITE_ROOT.DS.'..'.DS.'uploads/images';
 
 
   public $errors = array();
@@ -27,6 +27,7 @@ class  Media {
    'jpg',
    'jpeg',
    'png',
+   'pdf',
   );
   public function file_ext($filename){
      $ext = strtolower(substr( $filename, strrpos( $filename, '.' ) + 1 ) );
@@ -63,10 +64,10 @@ class  Media {
     elseif(empty($this->fileName) || empty($this->fileTempPath)):
       $this->errors[] = "La ubicación del archivo no esta disponible.";
       return false;
-    elseif(!is_writable($this->productPath)):
-      $this->errors[] = $this->productPath." Debe tener permisos de escritura!!!.";
+    elseif(!is_writable($this->bocetoPath)):
+      $this->errors[] = $this->bocetoPath." Debe tener permisos de escritura!!!.";
       return false;
-    elseif(file_exists($this->productPath."/".$this->fileName)):
+    elseif(file_exists($this->bocetoPath."/".$this->fileName)):
       $this->errors[] = "El archivo {$this->fileName} realmente existe.";
       return false;
     else:
@@ -97,29 +98,30 @@ class  Media {
         return false;
       }
 
-    if(!is_writable($this->productPath)){
-        $this->errors[] = $this->productPath." Debe tener permisos de escritura!!!.";
+    if(!is_writable($this->bocetoPath)){
+        $this->errors[] = $this->bocetoPath." Debe tener permisos de escritura!!!.";
         return false;
       }
 
     /*-----------------------CAMBIAR CON FICHEROS EXISTENTES----------------------*/
-    if(file_exists($this->productPath."/".$this->fileName)){
+    if(file_exists($this->bocetoPath."/".$this->fileName)){
       $this->errors[] = "El archivo {$this->fileName} Realmente existe.";
       return false;
     }
     /*-----------------------CAMBIAR FICHEROS EXISTENTES---------------------*/
 
-    if(move_uploaded_file($this->fileTempPath,$this->productPath.'/'.$this->fileName)) {
-      $insert_output = $this->insert_media();
-      if($insert_output!= false){
-        unset($this->fileTempPath);
-        $last_id = $this->get_last_media_id();
-        return $last_id;
+    if(move_uploaded_file($this->fileTempPath,$this->bocetoPath.'/'.$this->fileName)) {
+      //$insert_output = $this->insert_media();
+      //if($insert_output!= false){
+        //unset($this->fileTempPath);
+        //$last_id = $this->get_last_media_id();
+        //return $last_id;
+        return $this->fileName;
       }
-      else{
+    /*  else{
         return false;
       }
-      } else {
+    }*/ else {
         $this->errors[] = "Error en la carga del archivo, posiblemente debido a permisos incorrectos en la carpeta de carga.";
         return false;
       }
@@ -220,7 +222,7 @@ class  Media {
        return false;
      }
      if(delete_by_id('media',$id)){
-         unlink($this->productPath.'/'.$this->fileName);
+         unlink($this->bocetoPath.'/'.$this->fileName);
          return true;
      } else {
        $this->error[] = "Se ha producido un error en la eliminación de fotografías.";

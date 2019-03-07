@@ -39,7 +39,6 @@
             <thead class="thead-dark">
               <tr>
                 <th class="text-center" style="width: 50px;">#</th>
-                <th class="text-center"> Boceto</th>
                 <th class="text-center"> Descripción </th>
                 <th class="text-center" style="width: 10%;"> De: </th>
                 <th class="text-center" style="width: 10%;"> Para: </th>
@@ -52,7 +51,6 @@
               foreach ($solicitudes as $solicitud):?>
               <tr>
                 <td class="text-center"> <?php echo remove_junk($solicitud['id']); ?></td>
-                <td class="text-center"> <?php /*IMAGEN BOCETO*/ ?></td>
                 <td class="text-center"> <?php echo remove_junk($solicitud['descripcion']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($solicitud['usuario']); ?> </td>
                 <td class="text-center"> <?php echo remove_junk($solicitud['grupo_trabajo']); ?> </td>

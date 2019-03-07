@@ -16,19 +16,19 @@
     <div class="row">
         <div class="col-sm-6">
           <p class="display-4">Solicitud <span class="text-white">#<?php echo $solicitud["id"]; ?></span></p>
-          <p>Descripción <span class="text-white"><?php echo $solicitud['descripcion']; ?></span></p>
-          <p>Necesidad detectada <span class="text-white"><?php echo $solicitud['necesidad']; ?></span></p>
-          <p>Solicitado por <span class="text-white"><?php echo $solicitud['usuario']; ?></span></p>
-          <p>Encargado a <span class="text-white"><?php echo $solicitud['grupo_trabajo']; ?></span></p>
-          <p>Clasificación <span class="text-white"><?php echo $solicitud['categoria']; ?> (<?php echo $solicitud["tipo"]; ?>)</span></p>
-          <p>Estado <span class="text-white"><?php echo $solicitud['estado']; ?></span></p>
-          <p>Verificado el <span class="text-white"><?php echo $solicitud['fecha_limite']?$solicitud['fecha_verificacion']:"Indeterminada"; ?></span></p>
+          <p> <span class="font-weight-bold">Descripción</span>  <span class="text-white"><?php echo $solicitud['descripcion']; ?></span></p>
+          <p> <span class="font-weight-bold"> Necesidad detectada</span>  <span class="text-white"><?php echo $solicitud['necesidad']; ?></span></p>
+          <p> <span class="font-weight-bold"> Solicitado por</span>  <span class="text-white"><?php echo $solicitud['usuario']; ?></span></p>
+          <p> <span class="font-weight-bold"> Encargado a</span>  <span class="text-white"><?php echo $solicitud['grupo_trabajo']; ?></span></p>
+          <p> <span class="font-weight-bold"> Clasificación</span>  <span class="text-white"><?php echo $solicitud['categoria']; ?> (<?php echo $solicitud["tipo"]; ?>)</span></p>
+          <p> <span class="font-weight-bold"> Estado</span>  <span class="text-white"><?php echo $solicitud['estado']; ?></span></p>
+          <p> <span class="font-weight-bold"> Fecha limite</span>  <span class="text-white"><?php echo $solicitud['fecha_limite']?$solicitud['fecha_verificacion']:"Indeterminada"; ?></span></p>
           <br>
-          <p>Solicitado el <span class="text-white"><?php echo $solicitud['fecha_solicitud']; ?></p>
-          <p>Verificado el <span class="text-white"><?php echo $solicitud['fecha_verificacion']?$solicitud['fecha_verificacion']:"-"; ?></span></p>
-          <p>Verificado el <span class="text-white"><?php echo $solicitud['fecha_aprobacion']?$solicitud['fecha_aprobacion']:"-"; ?></span></p>
+          <p> <span class="font-weight-bold"> Solicitado el</span>  <span class="text-white"><?php echo $solicitud['fecha_solicitud']; ?></p>
+          <p> <span class="font-weight-bold"> Verificado el</span>  <span class="text-white"><?php echo $solicitud['fecha_verificacion']?$solicitud['fecha_verificacion']:"-"; ?></span></p>
+          <p> <span class="font-weight-bold"> Verificado el</span>  <span class="text-white"><?php echo $solicitud['fecha_aprobacion']?$solicitud['fecha_aprobacion']:"-"; ?></span></p>
           <br>
-          <p>Finalizado el <span class="text-white"><?php echo $solicitud['fecha_fin']?$solicitud['fecha_fin']:"-"; ?></span></p>
+          <p> <span class="font-weight-bold"></span> Finalizado el</span>  <span class="text-white"><?php echo $solicitud['fecha_fin']?$solicitud['fecha_fin']:"-"; ?></span></p>
         </div>
         <div class="col-sm-6">
           <img class="pt-5" src="uploads/images/<?php echo $solicitud["boceto_url"]; ?>" alt="Boceto">
