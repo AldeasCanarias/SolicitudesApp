@@ -38,7 +38,7 @@
           <table class="table table-striped table-dark table-hover">
             <thead class="thead-dark">
               <tr>
-                <th class="text-center" style="width: 50px;">#</th>
+                <th class="text-center" style="width: 50px;">ID</th>
                 <th class="text-center"> Descripción </th>
                 <th class="text-center" style="width: 10%;"> De: </th>
                 <th class="text-center" style="width: 10%;"> Para: </th>

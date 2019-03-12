@@ -31,7 +31,7 @@
           <p> <span class="font-weight-bold"></span> Finalizado el</span>  <span class="text-white"><?php echo $solicitud['fecha_fin']?$solicitud['fecha_fin']:"-"; ?></span></p>
         </div>
         <div class="col-sm-6">
-          <img class="pt-5" src="uploads/images/<?php echo $solicitud["boceto_url"]; ?>" alt="Boceto">
+          <img class="pt-5 img-fluid" src="uploads/images/<?php echo $solicitud["boceto_url"]; ?>" alt="Boceto">
         </div>
     </div>
 </div>

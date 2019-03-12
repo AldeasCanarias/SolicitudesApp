@@ -10,13 +10,13 @@
     $categoria = find_by_id('categorias', $_POST['categoria']);
   }
   $all_tipos = find_by_sql("SELECT * FROM tipos WHERE categoria_id='{$categoria["id"]}'");
-  $grupos_trabajo = find_by_sql("SELECT * FROM usuarios WHERE grupo_id=4");
+  $grupos_trabajo = find_by_sql("SELECT * FROM usuarios WHERE grupo_id=4"); //Grupos id=4
   $estado = 1;
-?>
-<?php
+
  if(isset($_POST['add_solicitud'])){
-   $req_fields = array('usuario_id','grupo_trabajo_id','necesidad','boceto_url', 'categoria_id','tipo_id','fecha_solicitud' ,'descripcion', 'estado_id');
-   validate_fields($req_fields);
+   //$req_fields = array('usuario_id','grupo_trabajo_id','necesidad','boceto_url', 'categoria_id','tipo_id','fecha_solicitud' ,'descripcion', 'estado_id');
+   //validate_fields($req_fields);
+
    if(empty($errors)){
      $s_usuario_id = remove_junk($db->escape($current_user['id']));
      $s_grupo_trabajo_id = remove_junk($db->escape($_POST['grupo_trabajo']));
@@ -27,8 +27,9 @@
      $s_fecha_solicitud = date('Y-m-d');
      $s_descripcion = remove_junk($db->escape($_POST['descripcion']));
      $s_estado_id = remove_junk($db->escape($estado));
+     $s_boceto_url = "";
 
-    /*  $photo = new Media();
+      $photo = new Media();
       $error_subida = $photo->upload($_FILES['boceto']);
       $img_id = $photo->process_media();
       if($img_id != false){
@@ -38,7 +39,8 @@
         $session->msg('d',join($photo->errors));
         $s_boceto_url = $error_subida;
         $img_id = "Error de insercion";
-      }*/
+      }
+
 
      $query  = "INSERT INTO solicitudes ";
      $query .= "( usuario_id,grupo_trabajo_id,necesidad,boceto_url,categoria_id,tipo_id,fecha_solicitud,descripcion,estado_id ";
@@ -48,7 +50,7 @@
      //$query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
        $session->msg('s',"Solicitud añadida exitosamente.");
-       redirect('add_solicitud.php', false);
+       redirect("add_solicitud.php?id_cat={$s_categoria_id}", false);
      } else {
        $session->msg('d',' Lo siento, registro falló.');
        redirect('solicitudes.php', false);
@@ -56,15 +58,14 @@
 
    } else{
      $session->msg("d", $errors);
-     redirect('add_solicitud.php',false);
+     redirect("add_solicitud.php?id_cat={$s_categoria_id}", false);
    }
 
  }
 
 ?>
+
 <?php include_once('layouts/header.php'); ?>
-<pre><?php var_dump($_POST) ?></pre>
-<pre><?php var_dump($_FILES) ?></pre>
 <div class="row">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
@@ -85,7 +86,7 @@
         <div class="panel-body">
          <div class="col-md-12">
            <!--*****************************************************FORMULARIO***********************************************************************-->
-           <form class="form-horizontal bg-dark pt-5 pb-5" action="add_solicitud.php" method="post" enctype="multipart/form-data">
+           <form class="form-horizontal bg-dark pt-5 pb-5" action="add_solicitud.php?id_cat=<?php echo $categoria['id']; ?>" method="post" enctype="multipart/form-data">
 
             <div class="form-group mb-4">
                <label for="grupo_trabajo" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Para: </label>
@@ -122,7 +123,7 @@
 
             <input type="hidden" name="categoria" value="<?php echo $categoria['id'] ?>">
 
-            <button class="btn btn-success btn-lg text-center float-right mr-5" type="submit" name="button">ENVIAR</button>
+            <button class="btn btn-success btn-lg text-center float-right mr-5" type="submit" name="add_solicitud">ENVIAR</button>
             <br>
 
            </form>

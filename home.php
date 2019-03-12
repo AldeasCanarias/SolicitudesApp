@@ -40,13 +40,14 @@
   <?php if ($current_user['nivel'] <= 3) { ?>
     <a class="text-white" href="#">
       <div class="text-center">
-        <i class="far fa-check-square display-1 mb-3"></i>
+        <i class="fas fa-check-square display-1 mb-3"></i>
         <h5>Validar Solicitud</h5>
         <h6>(Directores)</h6>
       </div>
     </a>
   <?php } ?>
-  
+
+
   <?php if ($current_user['nivel'] <= 2) { ?>
     <a class="text-white" href="#">
       <div class="text-center">
@@ -58,15 +59,34 @@
   <?php } ?>
 </div>
 
+
 <?php if ($current_user['nivel'] == 1) { ?>
   <div class="row bg-light mt-5 d-flex flex-column justify-content-around bg-transparent text-uppercase">
     <div class="text-center">
       <h4 class="mb-4">Area de Administrador</h4>
     </div>
     <div class="d-flex mt-4 justify-content-around">
-      <a class="text-white" href="#">Administrar Usuarios</a>
-      <a class="text-white" href="#">Administrar Grupos</a>
-      <a class="text-white" href="#">Administrar Programas</a>
+      <a class="text-white" href="#">
+        <div class="text-center">
+          <i class="fas fa-user display-1 mb-3"></i>
+          <h5>Administrar Usuarios</h5>
+        </div>
+      </a>
+
+      <a class="text-white" href="#">
+        <div class="text-center">
+          <i class="fas fa-users display-1 mb-3"></i>
+          <h5>Administrar Grupos</h5>
+        </div>
+      </a>
+
+      <a class="text-white" href="#">
+        <div class="text-center">
+        <i class="fas fa-building display-1 mb-3"></i>
+          <h5>Administrar Programas</h5>
+        </div>
+      </a>
+
     </div>
   </div>
 <?php } ?>
