@@ -4,6 +4,7 @@
   // Checkin What level user has permission to view this page
    page_require_level(2);
   $solicitudes = join_solicitudes_table();
+  $current_user = current_user();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <?php
@@ -60,12 +61,14 @@
                     <a href="ver_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="bg-transparent btn-lg"  title="Ver" data-toggle="tooltip">
                      <i class="far fa-eye text-white"></i>
                     </a>
-                    <a href="edit_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Editar" data-toggle="tooltip">
-                      <i class="fas fa-edit text-white"></i>
-                    </a>
-                    <a href="delete_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Eliminar" data-toggle="tooltip">
-                      <i class="far fa-trash-alt text-white"></i>
-                    </a>
+                    <?php if ($solicitud['usuario'] === find_user_by_id($current_user['id'])['user']): ?>
+                      <a href="edit_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Editar" data-toggle="tooltip">
+                        <i class="fas fa-edit text-white"></i>
+                      </a>
+                      <a href="delete_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Eliminar" data-toggle="tooltip">
+                        <i class="far fa-trash-alt text-white"></i>
+                      </a>
+                    <?php endif; ?>
                   </div>
                 </td>
               </tr>
