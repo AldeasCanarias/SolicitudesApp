@@ -28,14 +28,14 @@
     </div>
   </a>
 
-
+  <?php if ($current_user['nivel'] != 4) { ?>
     <a class="text-white" href="select_categoria_solicitud.php">
       <div class="text-center">
         <i class="fas fa-plus display-1 mb-3"></i>
         <h5>Nueva Solicitud</h5>
       </div>
     </a>
-
+  <?php } ?>
 
   <?php if ($current_user['nivel'] <= 3) { ?>
     <a class="text-white" href="#">

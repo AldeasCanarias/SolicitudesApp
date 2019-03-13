@@ -125,7 +125,7 @@ function tableExists($table){
      global $db;
      $id = (int)$user_id;
        if(tableExists('usuarios')){
-             $sql =  " SELECT u.id, u.user, g.nombre as grupo, g.nivel as nivel, p.nombre as programa, p.director as director, p.email_director as email_director ";
+             $sql =  " SELECT u.id, u.user, g.nombre as grupo, u.grupo_id, g.nivel as nivel, p.nombre as programa, p.director as director, p.email_director as email_director ";
              $sql .= " FROM usuarios u ";
              $sql .= " LEFT JOIN programas p ON p.id = u.programa_id ";
              $sql .= " LEFT JOIN grupos g ON g.id = u.grupo_id ";
@@ -244,13 +244,30 @@ function tableExists($table){
     $sql  .=" ORDER BY s.id DESC ";
 
     return find_by_sql($sql);
-   }
+  }
 
+  function find_solicitudes_by_grupo_trabajo($id){
+     global $db;
+
+     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+     $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
+     $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
+     $sql  .=" FROM solicitudes s ";
+     $sql  .=" LEFT JOIN usuarios us ON us.id = s.usuario_id ";
+     $sql  .=" LEFT JOIN usuarios gt ON gt.id = s.grupo_trabajo_id ";
+     $sql  .=" LEFT JOIN categorias c ON c.id = s.categoria_id ";
+     $sql  .=" LEFT JOIN tipos t ON t.id = s.tipo_id ";
+     $sql  .=" LEFT JOIN estado e ON e.id = s.estado_id ";
+     $sql  .=" WHERE s.grupo_trabajo_id='$id' ";
+     $sql  .=" ORDER BY s.id DESC ";
+
+     return find_by_sql($sql);
+  }
 
   function solicitud_info_by_id($id){
      global $db;
 
-     $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+     $sql =  " SELECT s.id, s.categoria_id, s.grupo_trabajo_id, s.tipo_id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
      $sql  .=" FROM solicitudes s ";
@@ -272,46 +289,21 @@ function tableExists($table){
    /* on name or matches with the code. Also filters by Category.
    /*--------------------------------------------------------------*/
 
-    function find_product($product_name, $category, $location){
+    function find_solicitudes_by_user_id($user_id){
       global $db;
-      $p_name = remove_junk($db->escape($product_name));
-      $c_name = remove_junk($db->escape($category));
-      $l_name = remove_junk($db->escape($location));
-      $sql = "SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.code,c.name AS categorie, l.location_name AS location, s.state_name AS state";
-      $sql  .=" FROM products p";
-      $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
-      $sql  .=" LEFT JOIN location l ON l.id = p.location_id";
-      $sql  .=" LEFT JOIN state s ON s.id = p.state_id";
 
-      if (!($p_name == '' && $c_name == '' && $l_name == '')) {
-        $sql  .=" WHERE";
+      $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
+      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
+      $sql  .=" FROM solicitudes s ";
+      $sql  .=" LEFT JOIN usuarios us ON us.id = s.usuario_id ";
+      $sql  .=" LEFT JOIN usuarios gt ON gt.id = s.grupo_trabajo_id ";
+      $sql  .=" LEFT JOIN categorias c ON c.id = s.categoria_id ";
+      $sql  .=" LEFT JOIN tipos t ON t.id = s.tipo_id ";
+      $sql  .=" LEFT JOIN estado e ON e.id = s.estado_id ";
+      $sql  .=" WHERE us.id = '$user_id' ";
+      $sql  .=" ORDER BY s.id DESC ";
 
-        if ($p_name != '') {
-          $sql  .=" p.name LIKE '%$p_name%' OR p.code = '$p_name' OR p.code LIKE '%$p_name%'";
-        }
-
-        if ($c_name != '') {
-          if ($p_name != '') {
-            $sql .=" AND";
-          }
-          $sql .=" c.name = '$c_name'";
-        }
-
-        if($l_name != ''){
-          if ($p_name != '' || $c_name != '') {
-            $sql .=" AND";
-          }
-          $sql .=" l.location_name = '$l_name'";
-        }
-      }
-
-      $sql  .=" ORDER BY (CASE WHEN p.code = '$p_name' THEN 1
-                               WHEN p.name LIKE '$p_name%' THEN 2
-                               WHEN p.name LIKE '%$p_name' THEN 3
-                               WHEN p.name LIKE '%$p_name%' THEN 4
-                               WHEN p.code LIKE '%$p_name%' THEN 5
-                               ELSE 6
-                          END)";
       $result = find_by_sql($sql);
       return $result;
     }

@@ -2,33 +2,40 @@
   $page_title = 'Todas las solicitudes';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(2);
-  $solicitudes = join_solicitudes_table();
+   page_require_level(5);
+  //$solicitudes = join_solicitudes_table();
   $current_user = current_user();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <?php
-  $search_name = "";
-  $search_cat = "";
-  $search_loc = "";
-  if (isset($_POST["search_product"])) {
-    $search_name = remove_junk($db->escape($_POST['buscar']));
-    $search_cat = remove_junk($db->escape($_POST['category']));
-    $search_loc = remove_junk($db->escape($_POST['location']));
-    /*if($search_loc != ''){
-      echo "Buscando: " . $search_location;
-    }*/
-    $solicitudes = find_product($search_name, $search_cat, $search_loc);
+  if (isset($_POST["solo_user"])) {
+    $solicitudes = find_solicitudes_by_user_id($current_user['id']);
+  } else if ($current_user['nivel'] == 4) {
+    $solicitudes = find_solicitudes_by_grupo_trabajo($current_user['id']);
+  } else{
+    $solicitudes = join_solicitudes_table();
   }
 
 ?>
-
+  <div class="float-right">
+    <?php if ($current_user['nivel'] != 4): ?>
+      <form class="" action="solicitudes.php" method="post">
+        <?php if (!isset($_POST["solo_user"])): ?>
+          <input type="submit" class="btn btn-success" name="solo_user" value="Mostrar solo mis solicitudes">
+        <?php endif; ?>
+        <?php if (isset($_POST["solo_user"])): ?>
+          <input type="submit" class="btn btn-success" name="todo" value="Mostrar todo">
+        <?php endif; ?>
+      </form>
+    <?php endif; ?>
+  </div>
 
 
   <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
      </div>
+
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading clearfix bg-secondary">
