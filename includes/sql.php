@@ -232,7 +232,7 @@ function tableExists($table){
   function join_solicitudes_table(){
     global $db;
 
-    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, ";
     $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
     $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
     $sql  .=" FROM solicitudes s ";
@@ -249,7 +249,7 @@ function tableExists($table){
   function find_solicitudes_by_grupo_trabajo($id){
      global $db;
 
-     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.estado_id, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
      $sql  .=" FROM solicitudes s ";
@@ -283,6 +283,26 @@ function tableExists($table){
      $solicitud = $db->fetch_assoc($result);
      return $solicitud;
     }
+
+
+  function find_solicitudes_by_estado_id($estado_id){
+    global $db;
+
+    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+    $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
+    $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
+    $sql  .=" FROM solicitudes s ";
+    $sql  .=" LEFT JOIN usuarios us ON us.id = s.usuario_id ";
+    $sql  .=" LEFT JOIN usuarios gt ON gt.id = s.grupo_trabajo_id ";
+    $sql  .=" LEFT JOIN categorias c ON c.id = s.categoria_id ";
+    $sql  .=" LEFT JOIN tipos t ON t.id = s.tipo_id ";
+    $sql  .=" LEFT JOIN estado e ON e.id = s.estado_id ";
+    $sql  .=" WHERE e.id = '$estado_id' ";
+    $sql  .=" ORDER BY s.id DESC ";
+
+    $result = find_by_sql($sql);
+    return $result;
+  }
 
    /*--------------------------------------------------------------*/
    /* Function for Finding all Product info that contains string

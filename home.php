@@ -38,25 +38,16 @@
   <?php } ?>
 
   <?php if ($current_user['nivel'] <= 3) { ?>
-    <a class="text-white" href="#">
+    <a class="text-white" href="validate_solicitudes.php">
       <div class="text-center">
         <i class="fas fa-check-square display-1 mb-3"></i>
-        <h5>Validar Solicitud</h5>
+        <h5>Validar o Aprobar</h5>
         <h6>(Directores)</h6>
       </div>
     </a>
   <?php } ?>
 
 
-  <?php if ($current_user['nivel'] <= 2) { ?>
-    <a class="text-white" href="#">
-      <div class="text-center">
-        <i class="fas fa-thumbs-up display-1 mb-3"></i>
-        <h5>Aprobar Solicitud</h5>
-        <h6>(Dir. Territorial)</h6>
-      </div>
-    </a>
-  <?php } ?>
 </div>
 
 

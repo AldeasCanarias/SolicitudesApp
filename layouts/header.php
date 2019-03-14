@@ -20,7 +20,7 @@
   <body class="bg-secondary">
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header class="bg-dark" id="header">
-      <a href="home.php"> <div class="logo float-left bg-dark text-light font-weight-bold pl-5"> GESTOR DE SOLICITUDES</div></a> 
+      <a href="home.php"> <div class="logo float-left bg-dark text-light font-weight-bold pl-5"> GESTOR DE SOLICITUDES</div></a>
       <div class="header-content">
       <div class="float-right clearfix">
         <ul class="info-menu list-inline list-unstyled">

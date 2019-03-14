@@ -1,5 +1,5 @@
 
-function suggetion() {
+/*function suggetion() {
 
      $('#sug_input').keyup(function(e) {
 
@@ -73,12 +73,19 @@ function suggetion() {
             var total = qty * price ;
                 $('input[name=total]').val(total.toFixed(2));
     });
-  }
+  }*/
 
   $(document).ready(function() {
 
+    $('.dir_terr').click(function(){
+      //alert("ERES EL DIRECTOR TERRITORIAL!!!");
+      if(!confirm("La VALIDACIÓN debería producirse por parte de un DIRECTOR DE PROGRAMA. ¿Seguro que desea validar?")){
+        return false;
+      }
+    });
+
     //tooltip
-    $('[data-toggle="tooltip"]').tooltip();
+/*    $('[data-toggle="tooltip"]').tooltip();
 
     $('.submenu-toggle').click(function () {
        $(this).parent().children('ul.submenu').toggle(200);
@@ -88,10 +95,16 @@ function suggetion() {
     // Callculate total ammont
     total();
 
-    $('.datepicker')
+   $('.datepicker')
         .datepicker({
             format: 'yyyy-mm-dd',
             todayHighlight: true,
             autoclose: true
-        });
+        });*/
+
+
+
+
+
+
   });

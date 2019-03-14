@@ -1,29 +1,57 @@
 <?php
-  $page_title = 'Todas las solicitudes';
+  $page_title = 'Validar solicitudes';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(5);
+   page_require_level(3);
   //$solicitudes = join_solicitudes_table();
   $current_user = current_user();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <?php
-  if (isset($_POST["solo_user"])) {
-    $solicitudes = find_solicitudes_by_user_id($current_user['id']);
-  } else if ($current_user['nivel'] == 4) {
-    $solicitudes = find_solicitudes_by_grupo_trabajo($current_user['id']);
+  if (isset($_POST["solo_sin_validar"])) {
+    $solicitudes = find_solicitudes_by_estado_id(1);
   } else{
     $solicitudes = join_solicitudes_table();
   }
 
+  if (isset($_GET['id'])) {
+    $query   = "UPDATE solicitudes SET ";
+    if(isset($_GET['validar'])){
+      if($_GET['validar'] == 1){
+        $query  .=" estado_id = 2 ";
+      } else {
+        $query  .=" estado_id = 1 ";
+      }
+    }
+    if(isset($_GET['aprobar'])){
+      if ($_GET['aprobar'] == 1) {
+        $query  .=" estado_id = 3 ";
+      } else {
+        $query  .=" estado_id = 2 ";
+      }
+    }
+    $query  .=" WHERE id ='{$_GET['id']}'";
+    $result = $db->query($query);
+
+    if($result && $db->affected_rows() === 1){
+      $session->msg('s',"Solicitud ha sido actualizada. ");
+      redirect('validate_solicitudes.php', false);
+    } else {
+      $session->msg('d',' Lo siento, actualización falló.');
+      redirect('validate_solicitudes.php?id='.$solicitud['id'], false);
+    }
+  }
+
+
+
 ?>
   <div class="float-right">
     <?php if ($current_user['nivel'] != 4): ?>
-      <form class="" action="solicitudes.php" method="post">
-        <?php if (!isset($_POST["solo_user"])): ?>
-          <input type="submit" class="btn btn-success" name="solo_user" value="Mostrar solo mis solicitudes">
+      <form class="" action="validate_solicitudes.php" method="post">
+        <?php if (!isset($_POST["solo_sin_validar"])): ?>
+          <input type="submit" class="btn btn-success" name="solo_sin_validar" value="Mostrar sólo sin validar">
         <?php endif; ?>
-        <?php if (isset($_POST["solo_user"])): ?>
+        <?php if (isset($_POST["solo_sin_validar"])): ?>
           <input type="submit" class="btn btn-success" name="todo" value="Mostrar todo">
         <?php endif; ?>
       </form>
@@ -75,16 +103,27 @@
                 <td class="text-center <?php echo $color_estado ?>"> <?php echo remove_junk($solicitud['estado']); ?> </td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="ver_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="bg-transparent btn-lg"  title="Ver" data-toggle="tooltip">
-                     <i class="far fa-eye text-white"></i>
-                    </a>
-                    <?php if ($solicitud['usuario'] === find_user_by_id($current_user['id'])['user']): ?>
-                      <a href="edit_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Editar" data-toggle="tooltip">
-                        <i class="fas fa-edit text-white"></i>
+                    <?php if ($solicitud['estado_id'] == 1): ?>
+                      <a class="<?php echo $current_user['nivel'] == 2 ? "dir_terr":""; ?> bg-transparent btn-lg" href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&validar=1"  title="Validar" data-toggle="tooltip">
+                       <i class="far fa-check-square text-danger"></i>
                       </a>
-                      <a href="delete_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Eliminar" data-toggle="tooltip">
-                        <i class="far fa-trash-alt text-white"></i>
+                    <?php endif; ?>
+                    <?php if ($solicitud['estado_id'] == 2): ?>
+                      <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&validar=0" class="bg-transparent btn-lg"  title="Desvalidar" data-toggle="tooltip">
+                       <i class="far fa-check-square text-primary"></i>
                       </a>
+                    <?php endif; ?>
+                    <?php if ($current_user['nivel'] == 2 || $current_user['nivel'] == 1): ?>
+                      <?php if ($solicitud['estado_id'] == 2): ?>
+                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=1" class="bg-transparent btn-lg"  title="Validar" data-toggle="tooltip">
+                         <i class="fas fa-thumbs-up text-danger"></i>
+                        </a>
+                      <?php endif; ?>
+                      <?php if ($solicitud['estado_id'] == 3): ?>
+                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=0" class="bg-transparent btn-lg"  title="Desvalidar" data-toggle="tooltip">
+                         <i class="fas fa-thumbs-up text-success"></i>
+                        </a>
+                      <?php endif; ?>
                     <?php endif; ?>
                   </div>
                 </td>
