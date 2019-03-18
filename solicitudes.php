@@ -12,23 +12,12 @@
     $solicitudes = find_solicitudes_by_user_id($current_user['id']);
   } else if ($current_user['nivel'] == 4) {
     $solicitudes = find_solicitudes_by_grupo_trabajo($current_user['id']);
-  } else{
+  } else {
     $solicitudes = join_solicitudes_table();
   }
 
 ?>
-  <div class="float-right">
-    <?php if ($current_user['nivel'] != 4): ?>
-      <form class="" action="solicitudes.php" method="post">
-        <?php if (!isset($_POST["solo_user"])): ?>
-          <input type="submit" class="btn btn-success" name="solo_user" value="Mostrar solo mis solicitudes">
-        <?php endif; ?>
-        <?php if (isset($_POST["solo_user"])): ?>
-          <input type="submit" class="btn btn-success" name="todo" value="Mostrar todo">
-        <?php endif; ?>
-      </form>
-    <?php endif; ?>
-  </div>
+
 
 
   <div class="row">
@@ -36,10 +25,22 @@
        <?php echo display_msg($msg); ?>
      </div>
 
-    <div class="col-md-12">
+    <div class="col-md-11">
       <div class="panel panel-default">
         <div class="panel-heading clearfix bg-secondary">
           <!--Hueco de los buscadores-->
+          <div class="float-right clearfix row">
+            <?php if ($current_user['nivel'] != 4): ?>
+              <form class="" action="solicitudes.php" method="post">
+                <?php if (!isset($_POST["solo_user"])): ?>
+                  <input type="submit" class="btn btn-success" name="solo_user" value="Mostrar solo mis solicitudes">
+                <?php endif; ?>
+                <?php if (isset($_POST["solo_user"])): ?>
+                  <input type="submit" class="btn btn-success" name="todo" value="Mostrar todo">
+                <?php endif; ?>
+              </form>
+            <?php endif; ?>
+          </div>
           <pre><?php //var_dump($solicitudes) ?></pre>
         </div>
         <div class="panel-body">

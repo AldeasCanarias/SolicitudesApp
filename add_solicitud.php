@@ -17,7 +17,7 @@
    //$req_fields = array('usuario_id','grupo_trabajo_id','necesidad','boceto_url', 'categoria_id','tipo_id','fecha_solicitud' ,'descripcion', 'estado_id');
    //validate_fields($req_fields);
 
-   if(empty($errors)){
+   if(empty($errors) && $_POST['descripcion']!='' && $_POST['necesidad']!=''){
      $s_usuario_id = remove_junk($db->escape($current_user['id']));
      $s_grupo_trabajo_id = remove_junk($db->escape($_POST['grupo_trabajo']));
      $s_necesidad = remove_junk($db->escape($_POST['necesidad']));
@@ -49,6 +49,9 @@
      $query .= ")";
      //$query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
+       /*Añadir entrada de seguimiento*/
+       $last_id = $db->query("SELECT max(id) FROM solicitudes")->fetch_assoc();
+       $r = $db->query("INSERT INTO seguimiento (solicitud_id, progreso_id) VALUES ('{$last_id['max(id)']}', 1)");
        $session->msg('s',"Solicitud añadida exitosamente.");
        redirect("add_solicitud.php?id_cat={$s_categoria_id}", false);
      } else {

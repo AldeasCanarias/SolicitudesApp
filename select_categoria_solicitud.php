@@ -7,14 +7,14 @@
 ?>
 <?php include_once('layouts/header.php'); ?>
 
-<div class="container">
-  <ul class="list-group text-center col-md-4">
+
+<div class="container col align-self-center col-md-6">
+  <h1 class="text-center mb-5">Selecciona una Categoría de Solicitud</h1>
+  <div class="row bg-light mt-5 d-flex justify-content-around bg-transparent text-uppercase ">
     <?php foreach ($all_categorias as $categoria): ?>
-        <li class="list-group-item text-black">
-          <a class="text-black" href="add_solicitud.php?id_cat=<?php echo $categoria["id"];?>"> <?php echo $categoria["nombre"];?> </a>
-        </li>
+          <a class="text-white btn btn-dark mb-5 btn-lg" href="add_solicitud.php?id_cat=<?php echo $categoria["id"];?>"> <?php echo $categoria["nombre"];?> </a>
     <?php endforeach; ?>
-  </ul>
+  </div>
 </div>
 
 

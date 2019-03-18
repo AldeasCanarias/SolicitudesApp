@@ -115,12 +115,12 @@
                     <?php endif; ?>
                     <?php if ($current_user['nivel'] == 2 || $current_user['nivel'] == 1): ?>
                       <?php if ($solicitud['estado_id'] == 2): ?>
-                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=1" class="bg-transparent btn-lg"  title="Validar" data-toggle="tooltip">
+                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=1" class="bg-transparent btn-lg"  title="Aprobar" data-toggle="tooltip">
                          <i class="fas fa-thumbs-up text-danger"></i>
                         </a>
                       <?php endif; ?>
                       <?php if ($solicitud['estado_id'] == 3): ?>
-                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=0" class="bg-transparent btn-lg"  title="Desvalidar" data-toggle="tooltip">
+                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=0" class="bg-transparent btn-lg"  title="Desaprobar" data-toggle="tooltip">
                          <i class="fas fa-thumbs-up text-success"></i>
                         </a>
                       <?php endif; ?>

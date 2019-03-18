@@ -267,7 +267,7 @@ function tableExists($table){
   function solicitud_info_by_id($id){
      global $db;
 
-     $sql =  " SELECT s.id, s.categoria_id, s.grupo_trabajo_id, s.tipo_id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+     $sql =  " SELECT s.id, s.categoria_id, s.estado_id, s.grupo_trabajo_id, s.tipo_id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
      $sql  .=" FROM solicitudes s ";
@@ -312,7 +312,7 @@ function tableExists($table){
     function find_solicitudes_by_user_id($user_id){
       global $db;
 
-      $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+      $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.estado_id, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
       $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
       $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
       $sql  .=" FROM solicitudes s ";
@@ -327,6 +327,25 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
     }
+
+
+
+    function find_seguimiento_by_solicitud_id($id) {
+      global $db;
+
+      $sql =  " SELECT * FROM seguimiento WHERE solicitud_id='$id' ";
+      $result = find_by_sql($sql);
+      return $result;
+    }
+
+    function find_costes_by_solicitud_id($id) {
+      global $db;
+
+      $sql =  " SELECT * FROM costes WHERE solicitud_id='$id' ";
+      $result = find_by_sql($sql);
+      return $result;
+    }
+
 
 
     /*--------------------------------------------------------------*/
@@ -354,6 +373,7 @@ function tableExists($table){
 
        //return find_by_sql($sql);
      }
+
 
 
   /*--------------------------------------------------------------*/
