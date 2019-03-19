@@ -57,8 +57,8 @@
 
         <!--**************************************SEGUIMIENTO**********************************************-->
         <div class="seguimiento d-inline-block">
-          <p> <span class="font-weight-bold"> Progreso </span></p>
           <?php if ($current_user['id'] === $solicitud['grupo_trabajo_id'] && $solicitud['estado_id'] == 3): ?>
+            <p> <span class="font-weight-bold"> Progreso </span></p>
             <form class="" action="ver_solicitud.php?id=<?php echo $solicitud['id'] ?>" method="post">
               <select class="" name="progreso">
                 <?php foreach ($all_progresos as $progreso): ?>
@@ -71,7 +71,9 @@
         </div>
 
         <div class="costes">
-          <a href="costes.php?id=<?php echo $solicitud['id']; ?>">Tabla de costes</a>
+          <?php if ($solicitud['estado_id'] == 3): ?>
+            <a href="costes.php?id=<?php echo $solicitud['id']; ?>">Tabla de costes</a>
+          <?php endif; ?>
         </div>
     </div>
 

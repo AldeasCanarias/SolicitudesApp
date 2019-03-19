@@ -12,6 +12,7 @@
   $id = $_GET["id"];
   $costes = find_costes_by_solicitud_id($id);
   $solicitud = solicitud_info_by_id($id);
+  //Consulta de Coste Total!!
 ?>
 
 <?php
@@ -80,8 +81,8 @@
                 <tr>
                   <td class="text-center"><?php echo $coste['concepto'] ?></td>
                   <td class="text-center"><?php echo $coste['cantidad'] ?></td>
-                  <td class="text-center"><?php echo $coste['precio_unidad'] ?></td>
-                  <td class="text-center"><?php echo $coste['precio_total'] ?></td>
+                  <td class="text-center"><?php echo $coste['precio_unidad'] ?> €</td>
+                  <td class="text-center"><?php echo $coste['precio_total'] ?> €</td>
                   <?php if ($current_user['user']==$solicitud['grupo_trabajo']): ?>
                     <td class="text-center"><a href="costes.php?id=<?php echo $id ?>&borrar=<?php echo $coste['id'] ?>"><i class="fas fa-times text-danger"></i></a></td>
                   <?php endif; ?>

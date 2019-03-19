@@ -71,7 +71,7 @@
         </div>
       </a>
 
-      <a class="text-white" href="#">
+      <a class="text-white" href="admin_programas.php">
         <div class="text-center">
         <i class="fas fa-building display-1 mb-3"></i>
           <h5>Administrar Programas</h5>
