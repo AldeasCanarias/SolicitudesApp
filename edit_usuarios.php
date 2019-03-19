@@ -48,7 +48,7 @@
      </div>
      <form class="" action="edit_usuarios.php?id=<?php echo $id ?>" method="post">
        <input type="text" name="user" value="<?php echo $usuario['user'] ?>" >
-       <input type="text" name="password" value="<?php echo $usuario['password'] ?>" >
+       <input type="password" name="password" value="<?php echo $usuario['password'] ?>" >
 
        <label for="grupo_id">Programa</label>
        <select class="" name="programa_id">

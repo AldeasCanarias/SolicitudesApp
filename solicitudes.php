@@ -83,7 +83,7 @@
                       <a href="edit_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Editar" data-toggle="tooltip">
                         <i class="fas fa-edit text-white"></i>
                       </a>
-                      <a href="delete_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Eliminar" data-toggle="tooltip">
+                      <a href="delete_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg confirm_eliminacion"  title="Eliminar" data-toggle="tooltip">
                         <i class="far fa-trash-alt text-white"></i>
                       </a>
                     <?php endif; ?>

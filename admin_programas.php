@@ -75,7 +75,7 @@
                   <td class="text-center"><?php echo $programa['nombre'] ?></td>
                   <td class="text-center"><?php echo $programa['director'] ?></td>
                   <td class="text-center"><?php echo $programa['email_director'] ?></td>
-                  <td class="text-center"><a href="admin_programas.php?id=<?php echo $programa['id'] ?>&borrar=1"><i class="fas fa-times text-danger"></i></a></td>
+                  <td class="text-center confirm_eliminacion"><a href="admin_programas.php?id=<?php echo $programa['id'] ?>&borrar=1"><i class="fas fa-times text-danger"></i></a></td>
                   <td class="text-center"><a href="edit_programas.php?id=<?php echo $programa['id'] ?>"><i class="fas fa-edit text-primary"></i></a></td>
                 </tr>
               <?php endforeach; ?>

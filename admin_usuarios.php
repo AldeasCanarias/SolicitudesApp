@@ -56,7 +56,7 @@
           <div class="float-right clearfix row">
               <form class="" action="admin_usuarios.php" method="post">
                 <input type="text" name="user" value="" placeholder="Nombre de Usuario">
-                <input type="text" name="password" value=""  placeholder="Contraseña">
+                <input type="password" name="password" value=""  placeholder="Contraseña">
 
                 <label for="grupo_id">Programa</label>
                 <select class="" name="programa_id">
@@ -91,7 +91,7 @@
                   <td class="text-center"><?php echo $usuario['user'] ?></td>
                   <td class="text-center"><?php echo $usuario['programa'] ?></td>
                   <td class="text-center"><?php echo $usuario['grupo'] ?></td>
-                  <td class="text-center"><a href="admin_usuarios.php?id=<?php echo $usuario['id'] ?>&borrar=1"><i class="fas fa-times text-danger"></i></a></td>
+                  <td class="text-center confirm_eliminacion"><a href="admin_usuarios.php?id=<?php echo $usuario['id'] ?>&borrar=1"><i class="fas fa-times text-danger"></i></a></td>
                   <td class="text-center"><a href="edit_usuarios.php?id=<?php echo $usuario['id'] ?>"><i class="fas fa-edit text-primary"></i></a></td>
                 </tr>
               <?php endforeach; ?>

@@ -12,7 +12,7 @@
   $id = $_GET["id"];
   $costes = find_costes_by_solicitud_id($id);
   $solicitud = solicitud_info_by_id($id);
-  //Consulta de Coste Total!!
+  $coste_total = calcular_coste_total_by_id($id);
 ?>
 
 <?php
@@ -71,25 +71,29 @@
             <thead class="thead-dark">
               <tr>
                 <th class="text-center"> Concepto </th>
-                <th class="text-center" style="width: 10%;"> Cantidad</th>
-                <th class="text-center" style="width: 10%;"> Precio Unidad </th>
-                <th class="text-center" style="width: 10%;"> Precio Total </th>
+                <th class="text-right pr-3" style="width: 10%;"> Cantidad</th>
+                <th class="text-right pr-3" style="width: 10%;"> Precio Unidad </th>
+                <th class="text-right pr-3" style="width: 10%;"> Precio Total </th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($costes as $coste): ?>
                 <tr>
                   <td class="text-center"><?php echo $coste['concepto'] ?></td>
-                  <td class="text-center"><?php echo $coste['cantidad'] ?></td>
-                  <td class="text-center"><?php echo $coste['precio_unidad'] ?> €</td>
-                  <td class="text-center"><?php echo $coste['precio_total'] ?> €</td>
+                  <td class="text-right pr-3"><?php echo $coste['cantidad'] ?></td>
+                  <td class="text-right pr-3"><?php echo $coste['precio_unidad'] ?> €</td>
+                  <td class="text-right pr-3"><?php echo $coste['precio_total'] ?> €</td>
                   <?php if ($current_user['user']==$solicitud['grupo_trabajo']): ?>
-                    <td class="text-center"><a href="costes.php?id=<?php echo $id ?>&borrar=<?php echo $coste['id'] ?>"><i class="fas fa-times text-danger"></i></a></td>
+                    <td class="text-center confirm_eliminacion"><a href="costes.php?id=<?php echo $id ?>&borrar=<?php echo $coste['id'] ?>"><i class="fas fa-times text-danger"></i></a></td>
                   <?php endif; ?>
                 </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
+          <div class="float-right">
+            <hr/>
+            <p>Total: <?php echo number_format($coste_total[0]['total'], 2, ',', ' '); ?> €</p>
+          </div>
         </div>
       </div>
     </div>

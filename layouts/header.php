@@ -30,12 +30,6 @@
               <span><?php echo remove_junk(ucfirst($user['user'])); ?> <i class="caret"></i></span>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                  <a href="profile.php?id=<?php echo (int)$user['id'];?>">
-                      <i class="glyphicon glyphicon-user"></i>
-                      Perfil
-                  </a>
-              </li>
              <li>
                  <a href="edit_account.php" title="edit account">
                      <i class="glyphicon glyphicon-cog"></i>

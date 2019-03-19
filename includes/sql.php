@@ -368,6 +368,13 @@ function tableExists($table){
     }
 
 
+    function calcular_coste_total_by_id($id){
+      global $db;
+
+      $sql =  " SELECT SUM(precio_total) AS total FROM costes WHERE solicitud_id='$id' ";
+      $result = find_by_sql($sql);
+      return $result;
+    }
 
     /*--------------------------------------------------------------*/
     /* Busca todos los datos de producto por ID

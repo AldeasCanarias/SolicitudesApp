@@ -84,6 +84,12 @@
       }
     });
 
+
+    $('.confirm_eliminacion').click(function(){
+      if(!confirm("¿Seguro que desea ELIMINAR?")){
+        return false;
+      }
+    });
     //tooltip
 /*    $('[data-toggle="tooltip"]').tooltip();
 
