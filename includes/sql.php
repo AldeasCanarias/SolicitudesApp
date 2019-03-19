@@ -351,6 +351,8 @@ function tableExists($table){
 
 
 
+
+
     function find_seguimiento_by_solicitud_id($id) {
       global $db;
 
@@ -358,6 +360,9 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
     }
+
+
+
 
     function find_costes_by_solicitud_id($id) {
       global $db;
@@ -368,6 +373,9 @@ function tableExists($table){
     }
 
 
+
+
+
     function calcular_coste_total_by_id($id){
       global $db;
 
@@ -375,6 +383,45 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
     }
+
+
+
+    function add_fechas_validacion($id, $tipo_validacion){
+      global $db;
+
+      $fecha = date('Y-m-d');
+      if($tipo_validacion === 'validar'){
+        $sql = "UPDATE solicitudes SET fecha_verificacion='{$fecha}' WHERE id=$id";
+        $db->query($sql);
+      } else if ($tipo_validacion === 'aprobar') {
+        $sql = "UPDATE solicitudes SET fecha_aprobacion='{$fecha}' WHERE id=$id";
+        $db->query($sql);
+      } else if ($tipo_validacion === 'desvalidar'){
+        $sql = "UPDATE solicitudes SET fecha_verificacion=NULL WHERE id=$id";
+        $db->query($sql);
+      } else {
+        $sql = "UPDATE solicitudes SET fecha_aprobacion=NULL WHERE id=$id";
+        $db->query($sql);
+      }
+    }
+
+
+
+
+    function add_fecha_fin($id, $tipo_validacion){
+      global $db;
+
+      $fecha = date('Y-m-d');
+      if($tipo_validacion === 'finalizar'){
+        $sql = "UPDATE solicitudes SET fecha_fin='{$fecha}' WHERE id=$id";
+        $db->query($sql);
+      } else {
+        $sql = "UPDATE solicitudes SET fecha_fin=NULL WHERE id=$id";
+        $db->query($sql);
+      }
+    }
+
+
 
     /*--------------------------------------------------------------*/
     /* Busca todos los datos de producto por ID

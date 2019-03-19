@@ -19,15 +19,19 @@
     if(isset($_GET['validar'])){
       if($_GET['validar'] == 1){
         $query  .=" estado_id = 2 ";
+        add_fechas_validacion($_GET['id'], 'validar');
       } else {
         $query  .=" estado_id = 1 ";
+        add_fechas_validacion($_GET['id'], 'desvalidar');
       }
     }
     if(isset($_GET['aprobar'])){
       if ($_GET['aprobar'] == 1) {
         $query  .=" estado_id = 3 ";
+        add_fechas_validacion($_GET['id'], 'aprobar');
       } else {
         $query  .=" estado_id = 2 ";
+        add_fechas_validacion($_GET['id'], 'desaprobar');
       }
     }
     $query  .=" WHERE id ='{$_GET['id']}'";

@@ -16,6 +16,11 @@
 
 <?php
   if(isset($_POST['actualizar_progreso'])){
+    if ($_POST['progreso'] === '4') {
+      add_fecha_fin($id, "finalizar");
+    } else {
+      add_fecha_fin($id, "no-finalizar");
+    }
     $query   = "UPDATE seguimiento SET";
     $query  .=" progreso_id ='{$_POST['progreso']}' ";
     $query  .=" WHERE solicitud_id ='{$solicitud['id']}'";
@@ -57,7 +62,7 @@
 
         <!--**************************************SEGUIMIENTO**********************************************-->
         <div class="seguimiento d-inline-block">
-          <?php if ($current_user['id'] === $solicitud['grupo_trabajo_id'] && $solicitud['estado_id'] == 3): ?>
+          <?php if ($current_user['id'] === $solicitud['grupo_trabajo_id'] && $solicitud['estado_id'] === '3'): ?>
             <p> <span class="font-weight-bold"> Progreso </span></p>
             <form class="" action="ver_solicitud.php?id=<?php echo $solicitud['id'] ?>" method="post">
               <select class="" name="progreso">
