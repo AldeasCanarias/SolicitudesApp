@@ -57,17 +57,10 @@
       <h4 class="mb-4">Area de Administrador</h4>
     </div>
     <div class="d-flex mt-4 justify-content-around">
-      <a class="text-white" href="#">
+      <a class="text-white" href="admin_usuarios.php">
         <div class="text-center">
           <i class="fas fa-user display-1 mb-3"></i>
           <h5>Administrar Usuarios</h5>
-        </div>
-      </a>
-
-      <a class="text-white" href="#">
-        <div class="text-center">
-          <i class="fas fa-users display-1 mb-3"></i>
-          <h5>Administrar Grupos</h5>
         </div>
       </a>
 
@@ -77,7 +70,6 @@
           <h5>Administrar Programas</h5>
         </div>
       </a>
-
     </div>
   </div>
 <?php } ?>

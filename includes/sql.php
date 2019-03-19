@@ -246,6 +246,27 @@ function tableExists($table){
     return find_by_sql($sql);
   }
 
+
+
+
+
+  function join_usuarios_table(){
+    global $db;
+
+    $sql =  " SELECT u.id, u.user, u.programa_id, u.grupo_id, u.password, ";
+    $sql  .=" p.nombre as programa, g.nombre as grupo, g.nivel as nivel ";
+    $sql  .=" FROM usuarios u ";
+    $sql  .=" LEFT JOIN programas p ON p.id = u.programa_id ";
+    $sql  .=" LEFT JOIN grupos g ON g.id = u.grupo_id ";
+    $sql  .=" ORDER BY u.id DESC ";
+
+    return find_by_sql($sql);
+  }
+
+
+
+
+
   function find_solicitudes_by_grupo_trabajo($id){
      global $db;
 
