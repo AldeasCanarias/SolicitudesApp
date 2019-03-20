@@ -11,6 +11,10 @@ function find_all($table) {
      return find_by_sql("SELECT * FROM ".$db->escape($table));
    }
 }
+
+
+
+
 /*--------------------------------------------------------------*/
 /* Function for Perform queries
 /*--------------------------------------------------------------*/
@@ -21,6 +25,10 @@ function find_by_sql($sql)
   $result_set = $db->while_loop($result);
  return $result_set;
 }
+
+
+
+
 /*--------------------------------------------------------------*/
 /*  Function for Find data from table by id
 /*--------------------------------------------------------------*/
@@ -36,6 +44,10 @@ function find_by_id($table,$id)
             return null;
      }
 }
+
+
+
+
 /*--------------------------------------------------------------*/
 /* Function for Delete data from table by id
 /*--------------------------------------------------------------*/
@@ -51,10 +63,13 @@ function delete_by_id($table,$id)
     return ($db->affected_rows() === 1) ? true : false;
    }
 }
+
+
+
+
 /*--------------------------------------------------------------*/
 /* Function for Count id  By table name
 /*--------------------------------------------------------------*/
-
 function count_by_id($table){
   global $db;
   if(tableExists($table))
@@ -64,6 +79,10 @@ function count_by_id($table){
      return($db->fetch_assoc($result));
   }
 }
+
+
+
+
 /*--------------------------------------------------------------*/
 /* Determine if database table exists
 /*--------------------------------------------------------------*/
@@ -77,6 +96,10 @@ function tableExists($table){
               return false;
       }
   }
+
+
+
+
  /*--------------------------------------------------------------*/
  /* Login with the data provided in $_POST,
  /* coming from the login form.
@@ -96,6 +119,10 @@ function tableExists($table){
     }
    return false;
   }
+
+
+
+
   /*--------------------------------------------------------------*/
   /* Login with the data provided in $_POST,
   /* coming from the login_v2.php form.
@@ -116,6 +143,8 @@ function tableExists($table){
      }
     return false;
    }
+
+
 
 
    /*--------------------------------------------------------------*/
@@ -139,6 +168,8 @@ function tableExists($table){
    }
 
 
+
+
   /*--------------------------------------------------------------*/
   /* Find current log in user by session id
   /*--------------------------------------------------------------*/
@@ -153,6 +184,10 @@ function tableExists($table){
       }
     return $current_user;
   }
+
+
+
+
   /*--------------------------------------------------------------*/
   /* Find all user by
   /* Joining users table and user gropus table
@@ -168,10 +203,13 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
   }
+
+
+
+
   /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
   /*--------------------------------------------------------------*/
-
  function updateLastLogIn($user_id)
 	{
 		global $db;
@@ -180,6 +218,9 @@ function tableExists($table){
     $result = $db->query($sql);
     return ($result && $db->affected_rows() === 1 ? true : false);
 	}
+
+
+
 
   /*--------------------------------------------------------------*/
   /* Find all Group name
@@ -191,6 +232,10 @@ function tableExists($table){
     $result = $db->query($sql);
     return($db->num_rows($result) === 0 ? true : false);
   }
+
+
+
+
   /*--------------------------------------------------------------*/
   /* Find group level
   /*--------------------------------------------------------------*/
@@ -201,6 +246,10 @@ function tableExists($table){
     $result = $db->query($sql);
     return($db->num_rows($result) === 0 ? true : false);
   }
+
+
+
+
   /*--------------------------------------------------------------*/
   /* Function for cheaking which user level has access to page
   /*--------------------------------------------------------------*/
@@ -225,9 +274,13 @@ function tableExists($table){
         endif;
 
      }
+
+
+
+
    /*--------------------------------------------------------------*/
-   /* Function for Finding all request name
-   /* JOIN with all related tables
+   /* Retorna todos los datos relacionados con todas las SOLICITUDES
+   /* JOIN con todas las tablas relacionadas
    /*--------------------------------------------------------------*/
   function join_solicitudes_table(){
     global $db;
@@ -249,7 +302,10 @@ function tableExists($table){
 
 
 
-
+  /*--------------------------------------------------------------*/
+  /* Retorna todos los datos relacionados con todos los USUARIOS
+  /* JOIN con todas las tablas relacionadas
+  /*--------------------------------------------------------------*/
   function join_usuarios_table(){
     global $db;
 
@@ -266,11 +322,15 @@ function tableExists($table){
 
 
 
-
+  /*--------------------------------------------------------------*/
+  /* Retorna todos los datos relacionados con las SOLICITUDES asociadas
+  /* a un GRUPO DE TRABAJO
+  /* JOIN con todas las tablas relacionadas
+  /*--------------------------------------------------------------*/
   function find_solicitudes_by_grupo_trabajo($id){
      global $db;
 
-     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.estado_id, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.estado_id, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.eliminado, ";
      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
      $sql  .=" FROM solicitudes s ";
@@ -285,6 +345,13 @@ function tableExists($table){
      return find_by_sql($sql);
   }
 
+
+
+
+  /*--------------------------------------------------------------*/
+  /* Retorna todos los datos relacionados la SOLICITUD con id = $id
+  /* JOIN con todas las tablas relacionadas
+  /*--------------------------------------------------------------*/
   function solicitud_info_by_id($id){
      global $db;
 
@@ -306,6 +373,13 @@ function tableExists($table){
     }
 
 
+
+
+  /*--------------------------------------------------------------*/
+  /* Retorna todos los datos relacionados con las SOLICITUDES
+  /* con un estado = $estado_id
+  /* JOIN con todas las tablas relacionadas
+  /*--------------------------------------------------------------*/
   function find_solicitudes_by_estado_id($estado_id){
     global $db;
 
@@ -325,11 +399,14 @@ function tableExists($table){
     return $result;
   }
 
-   /*--------------------------------------------------------------*/
-   /* Function for Finding all Product info that contains string
-   /* on name or matches with the code. Also filters by Category.
-   /*--------------------------------------------------------------*/
 
+
+
+    /*--------------------------------------------------------------*/
+    /* Retorna todos los datos relacionados con las SOLICITUDES generadas
+    /* por un usuario con id = $user_id
+    /* JOIN con todas las tablas relacionadas
+    /*--------------------------------------------------------------*/
     function find_solicitudes_by_user_id($user_id){
       global $db;
 
@@ -352,7 +429,10 @@ function tableExists($table){
 
 
 
-
+    /*--------------------------------------------------------------*/
+    /* Retorna los datos de SEGUIMIENTO de la solicitud
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
     function find_seguimiento_by_solicitud_id($id) {
       global $db;
 
@@ -364,6 +444,25 @@ function tableExists($table){
 
 
 
+    /*--------------------------------------------------------------*/
+    /* Retorna los datos de PROGRESO
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
+    function find_progreso_by_id($id){
+      global $db;
+
+      $sql =  " SELECT * FROM progreso WHERE id='$id' ";
+      $result = find_by_sql($sql);
+      return $result;
+    }
+
+
+
+
+    /*--------------------------------------------------------------*/
+    /* Retorna la TABLA DE COSTES de la solicitud
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
     function find_costes_by_solicitud_id($id) {
       global $db;
 
@@ -375,7 +474,10 @@ function tableExists($table){
 
 
 
-
+    /*--------------------------------------------------------------*/
+    /* Retorna el COSTE TOTAL de la solicitud
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
     function calcular_coste_total_by_id($id){
       global $db;
 
@@ -386,6 +488,11 @@ function tableExists($table){
 
 
 
+
+    /*--------------------------------------------------------------*/
+    /* Inserta las FECHAS de VALIDACION y APROBACION de la solicitud
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
     function add_fechas_validacion($id, $tipo_validacion){
       global $db;
 
@@ -408,6 +515,10 @@ function tableExists($table){
 
 
 
+    /*--------------------------------------------------------------*/
+    /* Inserta la FECHA de FINALIZACION de la solicitud
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
     function add_fecha_fin($id, $tipo_validacion){
       global $db;
 
@@ -423,6 +534,11 @@ function tableExists($table){
 
 
 
+
+    /*--------------------------------------------------------------*/
+    /* Cambia el valor de ELIMINADO de la solicitud
+    /* con un id = $id y un $status (true: eliminado // false: no eliminado)
+    /*--------------------------------------------------------------*/
     function swap_eliminado($id, $status){
       global $db;
 

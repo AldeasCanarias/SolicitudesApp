@@ -5,6 +5,7 @@
    page_require_level(5);
    $current_user = current_user();
    $all_progresos = find_all('progreso');
+
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -12,6 +13,7 @@
   $id = $_GET["id"];
   $solicitud = solicitud_info_by_id($id);
   $seguimiento = find_seguimiento_by_solicitud_id($id);
+  $progreso_actual = find_progreso_by_id($seguimiento[0]['progreso_id']);
 ?>
 
 <?php
@@ -34,6 +36,7 @@
             }
   }
 ?>
+
 
 
 <a class="btn bg-transparent btn-lg" href="solicitudes.php"><i class="fas fa-chevron-left"></i></a>
@@ -72,6 +75,9 @@
               </select>
               <input type="submit" class="btn btn-primary" name="actualizar_progreso">
             </form>
+          <?php endif; ?>
+          <?php if ($current_user['id'] != $solicitud['grupo_trabajo_id'] && $solicitud['estado_id'] === '3'): ?>
+            <p> <span class="font-weight-bold"> Progreso </span> <?php echo $progreso_actual[0]['nombre'] ?></p>
           <?php endif; ?>
         </div>
 
