@@ -11,9 +11,15 @@
   }
 ?>
 <?php
-  $delete_id = delete_by_id('solicitudes', (int)$solicitud['id']);
+  //$delete_id = delete_by_id('solicitudes', (int)$solicitud['id']);
+  if ($_GET['recover'] === '1') {
+    $delete_id = swap_eliminado($_GET['id'],true);
+  } else {
+    $delete_id = swap_eliminado($_GET['id'],false);
+  }
+
   if($delete_id){
-      $session->msg("s","Solicitud eliminado");
+      $session->msg("s","Solicitud eliminada");
       redirect('solicitudes.php');
   } else {
       $session->msg("d","Eliminación falló");

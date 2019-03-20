@@ -28,6 +28,7 @@
      $s_descripcion = remove_junk($db->escape($_POST['descripcion']));
      $s_estado_id = remove_junk($db->escape($estado));
      $s_boceto_url = "";
+     $s_eliminado = false;
 
       $photo = new Media();
       $error_subida = $photo->upload($_FILES['boceto']);
@@ -43,9 +44,9 @@
 
 
      $query  = "INSERT INTO solicitudes ";
-     $query .= "( usuario_id,grupo_trabajo_id,necesidad,boceto_url,categoria_id,tipo_id,fecha_solicitud,descripcion,estado_id ";
+     $query .= "( usuario_id,grupo_trabajo_id,necesidad,boceto_url,categoria_id,tipo_id,fecha_solicitud,descripcion,estado_id,eliminado ";
      $query .= ") VALUES (";
-     $query .= " '{$s_usuario_id}', '{$s_grupo_trabajo_id}', '{$s_necesidad}', '{$s_boceto_url}', '{$s_categoria_id}', '{$s_tipo_id}', '{$s_fecha_solicitud}', '{$s_descripcion}', '{$s_estado_id}' ";
+     $query .= " '{$s_usuario_id}', '{$s_grupo_trabajo_id}', '{$s_necesidad}', '{$s_boceto_url}', '{$s_categoria_id}', '{$s_tipo_id}', '{$s_fecha_solicitud}', '{$s_descripcion}', '{$s_estado_id}', '{$s_eliminado}' ";
      $query .= ")";
      //$query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){

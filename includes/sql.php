@@ -232,7 +232,7 @@ function tableExists($table){
   function join_solicitudes_table(){
     global $db;
 
-    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, ";
+    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, s.eliminado, ";
     $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
     $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
     $sql  .=" FROM solicitudes s ";
@@ -422,6 +422,16 @@ function tableExists($table){
     }
 
 
+
+    function swap_eliminado($id, $status){
+      global $db;
+
+      $eliminado = $status?0:1;
+      $sql = $sql = "UPDATE solicitudes SET eliminado=$eliminado WHERE id=$id";
+      $db->query($sql);
+
+      return true;
+    }
 
 
 ?>

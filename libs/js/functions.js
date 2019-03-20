@@ -90,6 +90,12 @@
         return false;
       }
     });
+
+    $('.confirm_restauracion').click(function(){
+      if(!confirm("¿Seguro que desea RESTAURAR esta solicitud?")){
+        return false;
+      }
+    });
     //tooltip
 /*    $('[data-toggle="tooltip"]').tooltip();
 

@@ -70,6 +70,13 @@
           <h5>Administrar Programas</h5>
         </div>
       </a>
+
+      <a class="text-white" href="admin_papelera.php">
+        <div class="text-center">
+        <i class="fas fa-trash-alt display-1 mb-3"></i>
+          <h5>Papelera de Solicitudes</h5>
+        </div>
+      </a>
     </div>
   </div>
 <?php } ?>

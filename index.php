@@ -1,6 +1,6 @@
 <?php
   ob_start();
-
+  $page_title = 'Solicitudes - Login';
   require_once('includes/load.php');
   if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
