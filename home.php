@@ -21,7 +21,7 @@
 
 <div class="row bg-light mt-5 d-flex justify-content-around bg-transparent text-uppercase ">
 
-  <a class="text-white" href="solicitudes.php">
+  <a class="text-white menu-principal" href="solicitudes.php">
     <div class="text-center">
       <i class="fas fa-book-open display-1 mb-3"></i>
       <h5>Todas las Solicitudes</h5>
@@ -29,7 +29,7 @@
   </a>
 
   <?php if ($current_user['nivel'] != 4) { ?>
-    <a class="text-white" href="select_categoria_solicitud.php">
+    <a class="text-white menu-principal" href="select_categoria_solicitud.php">
       <div class="text-center">
         <i class="fas fa-plus display-1 mb-3"></i>
         <h5>Nueva Solicitud</h5>
@@ -38,7 +38,7 @@
   <?php } ?>
 
   <?php if ($current_user['nivel'] <= 3) { ?>
-    <a class="text-white" href="validate_solicitudes.php">
+    <a class="text-white menu-principal" href="validate_solicitudes.php">
       <div class="text-center">
         <i class="fas fa-check-square display-1 mb-3"></i>
         <h5>Validar o Aprobar</h5>
@@ -54,24 +54,24 @@
 <?php if ($current_user['nivel'] == 1) { ?>
   <div class="row bg-light mt-5 d-flex flex-column justify-content-around bg-transparent text-uppercase">
     <div class="text-center">
-      <h4 class="mb-4">Area de Administrador</h4>
+      <h4 class="mb-4 tituloadmin">Area de Administrador</h4>
     </div>
     <div class="d-flex mt-4 justify-content-around">
-      <a class="text-white" href="admin_usuarios.php">
+      <a class="text-white menu-principal" href="admin_usuarios.php">
         <div class="text-center">
           <i class="fas fa-user display-1 mb-3"></i>
           <h5>Administrar Usuarios</h5>
         </div>
       </a>
 
-      <a class="text-white" href="admin_programas.php">
-        <div class="text-center">
+      <a class="text-white menu-principal" href="admin_programas.php">
+        <div class="text-center ">
         <i class="fas fa-building display-1 mb-3"></i>
           <h5>Administrar Programas</h5>
         </div>
       </a>
 
-      <a class="text-white" href="admin_papelera.php">
+      <a class="text-white menu-principal" href="admin_papelera.php">
         <div class="text-center">
         <i class="fas fa-trash-alt display-1 mb-3"></i>
           <h5>Papelera de Solicitudes</h5>

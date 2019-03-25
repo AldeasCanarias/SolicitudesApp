@@ -307,3 +307,75 @@ input[type=file]{
   width: 125px;
   height: 125px;
 }
+
+
+
+
+/*CUSTOM CSS*/
+body{
+  font-family: 'Arial', sans-serif;
+}
+
+.fa-file-signature{
+  font-size: 1.5rem;
+}
+
+.ficha-blanca{
+  background-color: #FEFEFE;
+  padding: 3rem;
+  border-radius: 5%;
+}
+
+.costes a{
+  color: #000000;
+  text-decoration: none;
+}
+
+.jumbotron{
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+}
+
+.menu-principal{
+  font-family: 'Oswald', sans-serif;
+}
+
+.tituloadmin{
+  font-family: 'Oswald', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CUSTOM CSS*/

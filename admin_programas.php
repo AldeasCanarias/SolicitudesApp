@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="panel-body">
-          <table>
+          <table class="table table-dark table-striped">
             <thead class="thead-dark">
               <tr>
                 <th class="text-center"> Programa </th>

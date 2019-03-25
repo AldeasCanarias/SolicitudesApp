@@ -7,20 +7,22 @@
            echo remove_junk($page_title);
             elseif(!empty($user))
            echo ucfirst($user['name']);
-            else echo "Sistema de inventario";?>
+            else echo "Gestor de Solicitudes";?>
     </title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="libs/css/main.css" />
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="js/bootstrap-datetimepicker.min.js"></script>
   </head>
   <body class="bg-secondary">
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header class="bg-dark" id="header">
-      <a href="home.php"> <div class="logo float-left bg-dark text-light font-weight-bold pl-5"> GESTOR DE SOLICITUDES</div></a>
+      <a href="home.php"> <div class="logo float-left bg-dark text-light font-weight-bold pl-5"><i class="fas fa-file-signature mr-2"></i> GESTOR DE SOLICITUDES</div></a>
       <div class="header-content">
       <div class="float-right clearfix">
         <ul class="info-menu list-inline list-unstyled">

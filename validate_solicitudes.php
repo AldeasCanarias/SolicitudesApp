@@ -49,6 +49,7 @@
 
 
 ?>
+<h1>Validar o Aprobar</h1>
   <div class="float-right">
     <?php if ($current_user['nivel'] != 4): ?>
       <form class="" action="validate_solicitudes.php" method="post">

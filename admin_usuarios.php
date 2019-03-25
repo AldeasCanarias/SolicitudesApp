@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'ADMIN Programas';
+  $page_title = 'ADMIN Usuarios';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(1);
@@ -43,7 +43,7 @@
 ?>
 
 
-
+  <h1>Usuarios</h1>
   <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
@@ -55,8 +55,8 @@
           <!--Hueco de los buscadores-->
           <div class="float-right clearfix row">
               <form class="" action="admin_usuarios.php" method="post">
-                <input type="text" name="user" value="" placeholder="Nombre de Usuario">
-                <input type="password" name="password" value=""  placeholder="Contraseña">
+                <input type="text" name="user" value="" placeholder="Nombre de Usuario" class="mr-3">
+                <input type="password" name="password" value=""  placeholder="Contraseña" class="mr-3">
 
                 <label for="grupo_id">Programa</label>
                 <select class="" name="programa_id">
@@ -72,12 +72,12 @@
                   <?php endforeach; ?>
                 </select>
 
-                <input type="submit" class="btn btn-success" name="agregar_usuario" value="AÑADIR">
+                <input type="submit" class="btn btn-success ml-5" name="agregar_usuario" value="AÑADIR">
               </form>
           </div>
         </div>
         <div class="panel-body">
-          <table>
+          <table class="table table-striped table-dark">
             <thead class="thead-dark">
               <tr>
                 <th class="text-center"> Nombre de Usuario </th>
