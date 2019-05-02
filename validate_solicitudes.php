@@ -88,6 +88,7 @@
               <tr>
                 <th class="text-center" style="width: 50px;">ID</th>
                 <th class="text-center"> Descripción </th>
+                <th class="text-center" style="width: 10%;"> Cantidad: </th>
                 <th class="text-center" style="width: 10%;"> De: </th>
                 <th class="text-center" style="width: 10%;"> Para: </th>
                 <th class="text-center" style="width: 10%;">Estado </th>
@@ -100,6 +101,7 @@
               <tr>
                 <td class="text-center"> <?php echo remove_junk($solicitud['id']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($solicitud['descripcion']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($solicitud['cantidad']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($solicitud['usuario']); ?> </td>
                 <td class="text-center"> <?php echo remove_junk($solicitud['grupo_trabajo']); ?> </td>
                 <?php

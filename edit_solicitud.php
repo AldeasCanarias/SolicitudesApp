@@ -22,10 +22,11 @@ if(!$solicitud){
      $s_necesidad = remove_junk($db->escape($_POST['necesidad']));
      $s_tipo_id = remove_junk($db->escape($_POST['tipo']));
      $s_descripcion = remove_junk($db->escape($_POST['descripcion']));
+     $s_cantidad = remove_junk($db->escape($_POST['cantidad']));
 
        $query   = "UPDATE solicitudes SET";
        $query  .=" grupo_trabajo_id ='{$s_grupo_trabajo_id}', necesidad ='{$s_necesidad}',";
-       $query  .=" tipo_id ='{$s_tipo_id}', descripcion ='{$s_descripcion}' ";
+       $query  .=" tipo_id ='{$s_tipo_id}', descripcion ='{$s_descripcion}', cantidad ='{$s_cantidad}' ";
        $query  .=" WHERE id ='{$solicitud['id']}'";
        $result = $db->query($query);
                if($result && $db->affected_rows() === 1){
@@ -101,6 +102,11 @@ if(!$solicitud){
               <div class="form-group mb-4">
                 <label for="descripcion" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Descripción detallada: </label>
                 <textarea class="col-sm-6 pb-5" type="text" name="descripcion"> <?php echo $solicitud['descripcion'] ?> </textarea>
+              </div>
+
+              <div class="form-group mb-4">
+                <label for="cantidad" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Cantidad: </label>
+                <input class="col-sm-1" type="number" name="cantidad" value="<?php echo $solicitud['cantidad'] ?>">
               </div>
 
               <input type="hidden" name="categoria" value="<?php echo $categoria['id'] ?>">

@@ -26,6 +26,7 @@
      $s_tipo_id = remove_junk($db->escape($_POST['tipo']));
      $s_fecha_solicitud = date('Y-m-d');
      $s_descripcion = remove_junk($db->escape($_POST['descripcion']));
+     $s_cantidad = remove_junk($db->escape($_POST['cantidad']));
      $s_estado_id = remove_junk($db->escape($estado));
      $s_boceto_url = "";
      $s_eliminado = false;
@@ -52,9 +53,9 @@
 
 
      $query  = "INSERT INTO solicitudes ";
-     $query .= "( usuario_id,grupo_trabajo_id,necesidad,boceto_url,categoria_id,tipo_id,fecha_solicitud,descripcion,estado_id,eliminado ";
+     $query .= "( usuario_id,grupo_trabajo_id,necesidad,boceto_url,categoria_id,tipo_id,fecha_solicitud,descripcion,estado_id,eliminado,cantidad ";
      $query .= ") VALUES (";
-     $query .= " '{$s_usuario_id}', '{$s_grupo_trabajo_id}', '{$s_necesidad}', '{$s_boceto_url}', '{$s_categoria_id}', '{$s_tipo_id}', '{$s_fecha_solicitud}', '{$s_descripcion}', '{$s_estado_id}', '{$s_eliminado}' ";
+     $query .= " '{$s_usuario_id}', '{$s_grupo_trabajo_id}', '{$s_necesidad}', '{$s_boceto_url}', '{$s_categoria_id}', '{$s_tipo_id}', '{$s_fecha_solicitud}', '{$s_descripcion}', '{$s_estado_id}', '{$s_eliminado}' , '{$s_cantidad}' ";
      $query .= ")";
      //$query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
@@ -126,6 +127,11 @@
             <div class="form-group mb-4">
               <label for="descripcion" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Descripción detallada: </label>
               <textarea class="col-sm-6 pb-5" type="text" name="descripcion" value=""></textarea>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="cantidad" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Cantidad: </label>
+              <input class="col-sm-1" type="number" name="cantidad" value="">
             </div>
 
             <div class="form-group mb-4">

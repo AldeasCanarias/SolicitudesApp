@@ -285,7 +285,7 @@ function tableExists($table){
   function join_solicitudes_table(){
     global $db;
 
-    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, s.eliminado, ";
+    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.cantidad, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, s.eliminado, ";
     $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
     $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
     $sql  .=" FROM solicitudes s ";
@@ -330,7 +330,7 @@ function tableExists($table){
   function find_solicitudes_by_grupo_trabajo($id){
      global $db;
 
-     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.estado_id, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.eliminado, ";
+     $sql =  " SELECT s.id, s.grupo_trabajo_id, s.necesidad, s.cantidad, s.estado_id, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.eliminado, ";
      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
      $sql  .=" FROM solicitudes s ";
@@ -355,7 +355,7 @@ function tableExists($table){
   function solicitud_info_by_id($id){
      global $db;
 
-     $sql =  " SELECT s.id, s.categoria_id, s.estado_id, s.grupo_trabajo_id, s.tipo_id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
+     $sql =  " SELECT s.id, s.categoria_id, s.estado_id, s.grupo_trabajo_id, s.tipo_id, s.necesidad, s.cantidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, ";
      $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
      $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
      $sql  .=" FROM solicitudes s ";
@@ -383,7 +383,7 @@ function tableExists($table){
   function find_solicitudes_by_estado_id($estado_id){
     global $db;
 
-    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, ";
+    $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.fecha_solicitud, s.cantidad, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.estado_id, ";
     $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
     $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
     $sql  .=" FROM solicitudes s ";
@@ -410,7 +410,7 @@ function tableExists($table){
     function find_solicitudes_by_user_id($user_id){
       global $db;
 
-      $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.estado_id, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.eliminado, ";
+      $sql =  " SELECT s.id, s.necesidad, s.boceto_url, s.estado_id, s.cantidad, s.fecha_solicitud, s.fecha_verificacion, s.fecha_aprobacion, s.descripcion, s.fecha_limite, s.fecha_fin, s.eliminado, ";
       $sql  .=" us.user as usuario, gt.user as grupo_trabajo, ";
       $sql  .=" c.nombre as categoria, t.nombre as tipo, e.nombre as estado ";
       $sql  .=" FROM solicitudes s ";
