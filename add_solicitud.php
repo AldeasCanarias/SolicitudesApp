@@ -30,9 +30,17 @@
      $s_boceto_url = "";
      $s_eliminado = false;
 
+     /*$to = '';
+     $subject = 'Nuevas solicitudes que validar';
+     $message = 'Tiene nuevas solicitudes para validar: ' . $s_descripcion;
+
       $photo = new Media();
       $error_subida = $photo->upload($_FILES['boceto']);
       $img_id = $photo->process_media();
+
+
+      mail ( string $to , string $subject , string $message [, string $additional_headers [, string $additional_parameters ]] )*/
+
       if($img_id != false){
         $session->msg('s','Imagen subida al servidor.');
         $s_boceto_url = $img_id;

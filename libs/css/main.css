@@ -344,6 +344,11 @@ body{
   font-family: 'Oswald', sans-serif;
 }
 
+.boton-top{
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  color:white;
+}
 
 
 

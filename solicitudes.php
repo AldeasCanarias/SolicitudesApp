@@ -49,6 +49,7 @@
               <tr>
                 <th class="text-center" style="width: 50px;">ID</th>
                 <th class="text-center"> Descripción </th>
+                <th class="text-center" style="width: 10%;"> Categoría: </th>
                 <th class="text-center" style="width: 10%;"> De: </th>
                 <th class="text-center" style="width: 10%;"> Para: </th>
                 <th class="text-center" style="width: 10%;">Estado </th>
@@ -62,17 +63,20 @@
                   <tr>
                     <td class="text-center"> <?php echo remove_junk($solicitud['id']); ?></td>
                     <td class="text-center"> <?php echo remove_junk($solicitud['descripcion']); ?></td>
+                    <td class="text-center"> <?php echo remove_junk($solicitud['categoria']); ?></td>
                     <td class="text-center"> <?php echo remove_junk($solicitud['usuario']); ?> </td>
                     <td class="text-center"> <?php echo remove_junk($solicitud['grupo_trabajo']); ?> </td>
                     <?php
-                      $color_estado = "";
-                      if ($solicitud['estado_id'] == 1) {
-                        $color_estado = "text-danger";
-                      } else if ($solicitud['estado_id'] == 2) {
-                        $color_estado = "text-primary";
-                      } else {
-                        $color_estado = "text-success";
-                      }
+                    $color_estado = "";
+                    if ($solicitud['estado_id'] == 1) {
+                      $color_estado = "text-muted";
+                    } else if ($solicitud['estado_id'] == 2) {
+                      $color_estado = "text-primary";
+                    } else if ($solicitud['estado_id'] == 3){
+                      $color_estado = "text-success";
+                    } else {
+                      $color_estado = "text-danger";
+                    }
                     ?>
                     <td class="text-center <?php echo $color_estado ?>"> <?php echo remove_junk($solicitud['estado']); ?> </td>
                     <td class="text-center">

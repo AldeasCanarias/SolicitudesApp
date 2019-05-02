@@ -14,6 +14,12 @@
   $solicitud = solicitud_info_by_id($id);
   $seguimiento = find_seguimiento_by_solicitud_id($id);
   $progreso_actual = find_progreso_by_id($seguimiento[0]['progreso_id']);
+
+  $atras_validar = 0;
+  if(isset($_GET['atras_validar'])){
+    $atras_validar = 1;
+  }
+
 ?>
 
 <?php
@@ -39,7 +45,7 @@
 
 
 
-<a class="btn bg-transparent btn-lg" href="solicitudes.php"><i class="fas fa-chevron-left"></i></a>
+<a class="btn bg-transparent btn-lg" href=<?php echo $atras_validar?'validate_solicitudes.php':'solicitudes.php' ?> ><i class="fas fa-chevron-left"></i></a>
 <div class="container">
     <div class="row ficha-blanca">
         <div class="col-sm-6">

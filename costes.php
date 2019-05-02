@@ -44,12 +44,12 @@
 ?>
 
 
-
+<h1>Costes</h1>
   <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
      </div>
-
+    <a class="btn bg-transparent btn-lg" href="ver_solicitud.php?id=<?php echo $id ?>"><i class="fas fa-chevron-left"></i></a>
     <div class="col-md-11">
       <div class="panel panel-default">
         <div class="panel-heading clearfix bg-secondary">
@@ -66,9 +66,9 @@
             <?php endif; ?>
           </div>
         </div>
-        <div class="panel-body">
-          <table>
-            <thead class="thead-dark">
+        <div class="panel-body div-costes">
+          <table class="table table-borderless">
+            <thead class="thead-dark mb-5">
               <tr>
                 <th class="text-center"> Concepto </th>
                 <th class="text-right pr-3" style="width: 10%;"> Cantidad</th>

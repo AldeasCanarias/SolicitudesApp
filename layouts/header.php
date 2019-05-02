@@ -23,6 +23,12 @@
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header class="bg-dark" id="header">
       <a href="home.php"> <div class="logo float-left bg-dark text-light font-weight-bold pl-5"><i class="fas fa-file-signature mr-2"></i> GESTOR DE SOLICITUDES</div></a>
+<!--  <div class="botones d-flex flex-display-row justify-content-around">
+        <a href="solicitudes.php" class="boton-top">Todas las solicitudes</a>
+        <a href="select_categoria_solicitud.php" class="boton-top">Nueva Solicitud</a>
+        <a href="validate_solicitudes.php" class="boton-top">Validar o Aprobar</a>
+      </div>       -->
+
       <div class="header-content">
       <div class="float-right clearfix">
         <ul class="info-menu list-inline list-unstyled">
