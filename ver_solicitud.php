@@ -56,7 +56,7 @@
           <p> <span class="font-weight-bold"> Encargado a</span>  <span class="text-dark"><?php echo $solicitud['grupo_trabajo']; ?></span></p>
           <p> <span class="font-weight-bold"> Clasificación:</span>  <span class="text-dark"><?php echo $solicitud['categoria']; ?> (<?php echo $solicitud["tipo"]; ?>)</span></p>
           <p> <span class="font-weight-bold"> Estado:</span>  <span class="text-dark"><?php echo $solicitud['estado']; ?></span></p>
-          <p> <span class="font-weight-bold"> Fecha limite:</span>  <span class="text-dark"><?php echo $solicitud['fecha_limite']?$solicitud['fecha_verificacion']:"Indeterminada"; ?></span></p>
+          <p> <span class="font-weight-bold"> Fecha limite:</span>  <span class="<?php echo $solicitud['fecha_limite']?"text-danger":"text-dark"; ?>"><?php echo $solicitud['fecha_limite']?$solicitud['fecha_verificacion']:"Indeterminada"; ?></span></p>
           <br>
           <p> <span class="font-weight-bold"> Solicitado el</span>  <span class="text-dark"><?php echo $solicitud['fecha_solicitud']; ?></p>
           <p> <span class="font-weight-bold"> Verificado el</span>  <span class="text-dark"><?php echo $solicitud['fecha_verificacion']?$solicitud['fecha_verificacion']:"-"; ?></span></p>

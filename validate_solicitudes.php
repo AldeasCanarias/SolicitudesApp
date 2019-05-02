@@ -137,7 +137,7 @@
 
                     <?php endif; ?>
 
-                    <?php //BOTONES DE APROBAR Y RECHAZAR (Solo visibles por Dir. Territorial-nivel 2) ?>
+                    <?php //BOTONES DE APROBAR (Solo visibles por Dir. Territorial-nivel 2) ?>
 
                     <?php if ($current_user['nivel'] == 2 || $current_user['nivel'] == 1): ?>
                       <?php if ($solicitud['estado_id'] == 2): ?>
@@ -149,16 +149,22 @@
                         <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=0" class="bg-transparent btn-lg"  title="Desaprobar" data-toggle="tooltip">
                          <i class="fas fa-thumbs-up text-success"></i>
                         </a>
-                      <?php endif; ?>
-                      <?php if ($solicitud['estado_id'] != 4 ): ?>
-                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&rechazar=1" class="bg-transparent btn-lg"  title="Rechazar" data-toggle="tooltip">
-                         <i class="fas fa-times text-muted"></i>
+                        <a href="add_fecha_limite.php?id=<?php echo (int)$solicitud['id'];?>" class="bg-transparent btn-lg"  title="Fecha Limite" data-toggle="tooltip">
+                         <i class="fas fa-calendar-alt text-light"></i>
                         </a>
                       <?php endif; ?>
-                      <?php if ($solicitud['estado_id'] == 4): ?>
-                        <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&rechazar=0" class="bg-transparent btn-lg"  title="No rechazar" data-toggle="tooltip">
-                         <i class="fas fa-times text-dark"></i>
-                        </a>
+                        <?php //BOTONES DE RECHAZAR (Solo visibles por Dir. Territorial-nivel 2) ?>
+                      <?php if ($solicitud['estado_id'] != 3): ?>
+                        <?php if ($solicitud['estado_id'] != 4 ): ?>
+                          <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&rechazar=1" class="bg-transparent btn-lg"  title="Rechazar" data-toggle="tooltip">
+                           <i class="fas fa-times text-muted"></i>
+                          </a>
+                        <?php endif; ?>
+                        <?php if ($solicitud['estado_id'] == 4): ?>
+                          <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&rechazar=0" class="bg-transparent btn-lg"  title="No rechazar" data-toggle="tooltip">
+                           <i class="fas fa-times text-dark"></i>
+                          </a>
+                        <?php endif; ?>
                       <?php endif; ?>
                     <?php endif; ?>
 
