@@ -85,9 +85,11 @@
                          <i class="far fa-eye text-white"></i>
                         </a>
                         <?php if ($solicitud['usuario'] === find_user_by_id($current_user['id'])['user']): ?>
-                          <a href="edit_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Editar" data-toggle="tooltip">
-                            <i class="fas fa-edit text-white"></i>
-                          </a>
+                          <?php if ($solicitud['estado_id']==1): ?>
+                            <a href="edit_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg"  title="Editar" data-toggle="tooltip">
+                              <i class="fas fa-edit text-white"></i>
+                            </a>
+                          <?php endif; ?>
                           <a href="delete_solicitud.php?id=<?php echo (int)$solicitud['id'];?>" class="btn bg-transparent btn-lg confirm_eliminacion"  title="Eliminar" data-toggle="tooltip">
                             <i class="far fa-trash-alt text-white"></i>
                           </a>

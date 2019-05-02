@@ -58,49 +58,59 @@ if(!$solicitud){
         <div class="panel-heading mb-2">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Editar solicitud #<?php echo $_GET['id']; ?></span>
+            <?php if ($solicitud['estado_id']!=1): ?>
+              <span>No se puede editar esta solicitud porque ya ha sido aprobada o rechazada.</span>
+            <?php endif; ?>
+            <?php if ($solicitud['estado_id']==1): ?>
+              <span>Editar solicitud #<?php echo $_GET['id']; ?></span>
+            <?php endif; ?>
          </strong>
         </div>
+
         <!--Panel Body-->
         <div class="panel-body">
          <div class="col-md-12">
            <!--*****************************************************FORMULARIO***********************************************************************-->
-           <form class="form-horizontal bg-dark pt-5 pb-5" action="edit_solicitud.php?id=<?php echo $solicitud["id"]; ?>" method="post" enctype="multipart/form-data">
+           <?php if ($solicitud['estado_id'] == 1): ?>
 
-            <div class="form-group mb-4">
-               <label for="grupo_trabajo" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Para: </label>
-               <select class="form-control-lg" name="grupo_trabajo">
-                 <?php foreach ($grupos_trabajo as $grupo): ?>
-                   <option value="<?php echo $grupo['id']; ?>" <?php if($solicitud['grupo_trabajo_id'] === $grupo['id']): echo "selected"; endif; ?>><?php echo $grupo['user'] ?></option>
-                 <?php endforeach; ?>
-               </select>
-            </div>
+             <form class="form-horizontal bg-dark pt-5 pb-5" action="edit_solicitud.php?id=<?php echo $solicitud["id"]; ?>" method="post" enctype="multipart/form-data">
 
-            <div class="form-group mb-4">
-               <label for="tipo" class="col-form-label col-sm-3 text-white font-weight-bold ml-5">Tipo de proyecto: </label>
-               <select class="form-control-sm" name="tipo">
-                 <?php foreach ($all_tipos as $tipo): ?>
-                   <option value="<?php echo $tipo['id']; ?>" <?php if($solicitud['tipo_id'] === $tipo['id']): echo "selected"; endif; ?> ><?php echo $tipo['nombre']; ?></option>
-                 <?php endforeach; ?>
-               </select>
-            </div>
+              <div class="form-group mb-4">
+                 <label for="grupo_trabajo" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Para: </label>
+                 <select class="form-control-lg" name="grupo_trabajo">
+                   <?php foreach ($grupos_trabajo as $grupo): ?>
+                     <option value="<?php echo $grupo['id']; ?>" <?php if($solicitud['grupo_trabajo_id'] === $grupo['id']): echo "selected"; endif; ?>><?php echo $grupo['user'] ?></option>
+                   <?php endforeach; ?>
+                 </select>
+              </div>
 
-            <div class="form-group mb-4">
-              <label for="necesidad" class="col-form-label col-sm-3 text-white font-weight-bold ml-5">Necesidad detectada: </label>
-              <textarea class="col-sm-6 pb-5" type="text" name="necesidad"><?php echo $solicitud['necesidad'] ?></textarea>
-            </div>
+              <div class="form-group mb-4">
+                 <label for="tipo" class="col-form-label col-sm-3 text-white font-weight-bold ml-5">Tipo de proyecto: </label>
+                 <select class="form-control-sm" name="tipo">
+                   <?php foreach ($all_tipos as $tipo): ?>
+                     <option value="<?php echo $tipo['id']; ?>" <?php if($solicitud['tipo_id'] === $tipo['id']): echo "selected"; endif; ?> ><?php echo $tipo['nombre']; ?></option>
+                   <?php endforeach; ?>
+                 </select>
+              </div>
 
-            <div class="form-group mb-4">
-              <label for="descripcion" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Descripción detallada: </label>
-              <textarea class="col-sm-6 pb-5" type="text" name="descripcion"> <?php echo $solicitud['descripcion'] ?> </textarea>
-            </div>
+              <div class="form-group mb-4">
+                <label for="necesidad" class="col-form-label col-sm-3 text-white font-weight-bold ml-5">Necesidad detectada: </label>
+                <textarea class="col-sm-6 pb-5" type="text" name="necesidad"><?php echo $solicitud['necesidad'] ?></textarea>
+              </div>
 
-            <input type="hidden" name="categoria" value="<?php echo $categoria['id'] ?>">
+              <div class="form-group mb-4">
+                <label for="descripcion" class="col-form-label col-sm-3  text-white font-weight-bold ml-5">Descripción detallada: </label>
+                <textarea class="col-sm-6 pb-5" type="text" name="descripcion"> <?php echo $solicitud['descripcion'] ?> </textarea>
+              </div>
 
-            <button class="btn btn-success btn-lg text-center float-right mr-5" type="submit" name="edit_solicitud">EDITAR</button>
-            <br>
+              <input type="hidden" name="categoria" value="<?php echo $categoria['id'] ?>">
 
-           </form>
+              <button class="btn btn-success btn-lg text-center float-right mr-5" type="submit" name="edit_solicitud">EDITAR</button>
+              <br>
+
+             </form>
+          <?php endif; ?>
+
            <!--*****************************************************/FORMULARIO***********************************************************************-->
          </div>
         </div>
