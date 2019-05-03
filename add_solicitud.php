@@ -142,10 +142,21 @@
             <input type="hidden" name="categoria" value="<?php echo $categoria['id'] ?>">
 
             <button class="btn btn-success btn-lg text-center float-right mr-5" type="submit" name="add_solicitud">ENVIAR</button>
+
             <br>
+
+            <?php if ($categoria['id'] == 2): ?>
+              <a class="ml-5 text-danger" href="libs/catalogo_madera.pdf">
+                <i class="fas fa-file-pdf display-3 mb-2"></i>
+                <br>
+                <p class="ml-4 text-light">CATÁLOGO</p>
+              </a>
+            <?php endif; ?>
 
            </form>
            <!--*****************************************************/FORMULARIO***********************************************************************-->
+
+
          </div>
         </div>
       </div>
