@@ -473,6 +473,19 @@ function tableExists($table){
 
 
 
+    /*--------------------------------------------------------------*/
+    /* Retorna los COMENTARIOS de la solicitud
+    /* con un id = $id
+    /*--------------------------------------------------------------*/
+    function find_comentarios_by_solicitud_id($id) {
+      global $db;
+
+      $sql =  " SELECT * FROM comentarios WHERE solicitud_id='$id' ";
+      $result = find_by_sql($sql);
+      return $result;
+    }
+
+
 
     /*--------------------------------------------------------------*/
     /* Retorna el COSTE TOTAL de la solicitud
@@ -548,6 +561,9 @@ function tableExists($table){
 
       return true;
     }
+
+
+
 
 
 ?>

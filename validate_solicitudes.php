@@ -151,6 +151,7 @@
                         <a href="validate_solicitudes.php?id=<?php echo (int)$solicitud['id'];?>&aprobar=0" class="bg-transparent btn-lg"  title="Desaprobar" data-toggle="tooltip">
                          <i class="fas fa-thumbs-up text-success"></i>
                         </a>
+                        <?php //BOTON DE FECHA LIMITE ?>
                         <a href="add_fecha_limite.php?id=<?php echo (int)$solicitud['id'];?>" class="bg-transparent btn-lg"  title="Fecha Limite" data-toggle="tooltip">
                          <i class="fas fa-calendar-alt text-light"></i>
                         </a>

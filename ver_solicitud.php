@@ -14,6 +14,7 @@
   $solicitud = solicitud_info_by_id($id);
   $seguimiento = find_seguimiento_by_solicitud_id($id);
   $progreso_actual = find_progreso_by_id($seguimiento[0]['progreso_id']);
+  $comentarios = find_comentarios_by_solicitud_id($id);
 
   $atras_validar = 0;
   if(isset($_GET['atras_validar'])){
@@ -32,14 +33,35 @@
     $query   = "UPDATE seguimiento SET";
     $query  .=" progreso_id ='{$_POST['progreso']}' ";
     $query  .=" WHERE solicitud_id ='{$solicitud['id']}'";
+
     $result = $db->query($query);
-            if($result && $db->affected_rows() === 1){
-              $session->msg('s',"Solicitud ha sido actualizada. ");
-              redirect('ver_solicitud.php?id='.$solicitud['id'], false);
-            } else {
-              $session->msg('d',' Lo siento, actualización falló.');
-              redirect('ver_solicitud.php?id='.$solicitud['id'], false);
-            }
+
+    if($result && $db->affected_rows() === 1){
+        $session->msg('s',"Solicitud ha sido actualizada. ");
+        redirect('ver_solicitud.php?id='.$solicitud['id'], false);
+    } else {
+        $session->msg('d',' Lo siento, actualización falló.');
+        redirect('ver_solicitud.php?id='.$solicitud['id'], false);
+    }
+  }
+
+  if(isset($_POST['comentar'])){
+    if ($_POST['comentario'] != null) {
+      $c_usuario_id = $_POST['usuario_id'];
+      $c_solicitud_id = $_POST['solicitud_id'];
+      $c_comentario = $_POST['comentario'];
+
+      $query = "INSERT INTO comentarios (usuario_id, solicitud_id, comentario) VALUES ('{$c_usuario_id}', '{$c_solicitud_id}', '{$c_comentario}')";
+      $result = $db->query($query);
+
+      if($result && $db->affected_rows() === 1){
+          $session->msg('s',"Comentario añadido. ");
+          redirect('ver_solicitud.php?id='.$c_solicitud_id, false);
+      } else {
+          $session->msg('d',' Lo siento, algo falló.');
+          redirect('ver_solicitud.php?id='.$c_solicitud_id, false);
+      }
+    }
   }
 ?>
 
@@ -95,6 +117,32 @@
             <?php endif; ?>
           </div>
         </div>
+
+          <!--**************************************COMENTARIOS**********************************************-->
+          <div class="lista_comentarios d-flex flex-column justify-content-between col-sm-12 border mb-3">
+            <h3>Comentarios:</h3>
+            <?php foreach ($comentarios as $comentario): ?>
+              <div class="comentario">
+                <?php $usuario_coment = find_by_id('usuarios', $comentario['usuario_id']) ?>
+                <b class="text-primary"><?php echo $usuario_coment['user']; ?></b>
+                <p><?php echo $comentario['comentario']; ?></p>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+        <?php if ($current_user['nivel'] == 2 || $current_user['nivel'] == 1): ?>
+          <div class="d-flex flex-row justify-content-between col-sm-12">
+            <div class="comentarios">
+              <form class="form" action="ver_solicitud.php" method="post">
+                <textarea class="col-sm-12 pb-5" type="text" name="comentario" value=""></textarea>
+                <input type="hidden" name="solicitud_id" value="<?php echo $solicitud['id'] ?>">
+                <input type="hidden" name="usuario_id" value="<?php echo $current_user['id'] ?>">
+                <button type="submit" class="btn btn-primary mt-3" name="comentar">Comentar</button>
+              </form>
+            </div>
+          </div>
+        <?php endif; ?>
+
 
     </div><!--Row ficha blanca-->
 </div><!--Container-->
